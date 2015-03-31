@@ -26,6 +26,12 @@ h1 {
 h2 {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    margin-top: 0px;
+}
+
+input {
+    margin-top: 0px;
+    margin-bottom: 6px;
 }
 
 .div {
@@ -42,13 +48,21 @@ h2 {
     overflow: scroll;
 }
 
-.map {
-    height: 100%;
+.mapcontainer {
+    height: 95%;
     width: 59%;
     margin: 0;
     padding: 0;
     display: inline-block;
-    background-color: #F00;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    background-color: #DDD;
 }
 
 .twitterbar {
