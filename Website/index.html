@@ -1,23 +1,53 @@
 <!doctype html>
 <html class="no-js" lang="">
     <head>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Map Yelp Twitter Thing</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script>
+            function initialize() {
+                var mapCanvas = document.getElementById('map');
+                var mapOptions = {
+                    center: new google.maps.LatLng(44.5403, -78.5463),
+                    zoom: 8,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(mapCanvas, mapOptions)
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
     </head>
     <body>
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <center><h1>Map Yelp Twitter Thing</h1></center>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+
+
+        <div class="yelpbar">
+            <center><h2>Yelp Feed</h2></center>
+            <p>
+                yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data yelp data 
+            </p>
+        </div>
+        <div class="map" id="map">
+        </div>
+        <div class="twitterbar">
+            <center><h2>Twitter Feed</h2></center>
+            <p>
+                twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data twitter data 
+            </p>
+        </div>
 
     </body>
 </html>

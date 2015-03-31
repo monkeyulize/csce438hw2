@@ -6,6 +6,78 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
+
+/* ==========================================================================
+   OUR PROJECT CSS
+   ========================================================================== */
+
+html, body {
+  height: 93%;
+  width: 100%;
+  margin: 0;
+  /*display: table;*/
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.div {
+    /*display:table-column;*/
+    overflow-y: scroll;
+}
+
+.yelpbar {
+    height: 100%;
+    width: 20%;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    overflow: scroll;
+}
+
+.map {
+    height: 100%;
+    width: 59%;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    background-color: #F00;
+}
+
+.twitterbar {
+    height: 100%;
+    width: 20%;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    overflow: scroll;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
