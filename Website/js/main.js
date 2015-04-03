@@ -10,7 +10,12 @@ function initialize() {
     var input = document.getElementById('searchTextField');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     var searchBox = new google.maps.places.SearchBox(input);
-
+	var infowindow = new google.maps.InfoWindow();
+	
+	//google.maps.event.addListener(map, 'click', function(event) {
+	//	alert('Lat: ' + event.latLng.lat() + ' Lng: ' + event.latLng.lng());
+	//});
+	
     // Listen for the event fired when the user selects an item from the
     // pick list. Retrieve the matching places for that item.
     google.maps.event.addListener(searchBox, 'places_changed', function() {
@@ -27,22 +32,27 @@ function initialize() {
         markers = [];
         var bounds = new google.maps.LatLngBounds();
         for (var i = 0, place; place = places[i]; i++) {
-            var image = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
+			var image = {
+				url: place.icon,
+				size: new google.maps.Size(71, 71),
+				origin: new google.maps.Point(0, 0),
+				anchor: new google.maps.Point(17, 34),
+				scaledSize: new google.maps.Size(25, 25)
+			};
 
             // Create a marker for each place.
             var marker = new google.maps.Marker({
                 map: map,
-                icon: image,
+                //icon: image,
                 title: place.name,
                 position: place.geometry.location
             });
 
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.setContent(this.title);
+				infowindow.open(map, this);
+
+			});
             markers.push(marker);
 
             bounds.extend(place.geometry.location);
@@ -51,6 +61,7 @@ function initialize() {
         map.fitBounds(bounds);
   });
 
+  
   // Bias the SearchBox results towards places that are within the bounds of the
   // current map's viewport.
   google.maps.event.addListener(map, 'bounds_changed', function() {
