@@ -1,6 +1,7 @@
 function initialize() {
     var markers = [];
     var mapCanvas = document.getElementById('map');
+	document.getElementById('doSearch').onclick = performRadarSearch;
     var mapOptions = {
         center: new google.maps.LatLng(44.5403, -78.5463),
         zoom: 8,
@@ -11,10 +12,55 @@ function initialize() {
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     var searchBox = new google.maps.places.SearchBox(input);
 	var infowindow = new google.maps.InfoWindow();
+	var service = new google.maps.places.PlacesService(map);
 	
 	//google.maps.event.addListener(map, 'click', function(event) {
 	//	alert('Lat: ' + event.latLng.lat() + ' Lng: ' + event.latLng.lng());
 	//});
+	
+	function performRadarSearch() {
+		var request = {
+			bounds: map.getBounds(),
+			keyword: 'interesting' //work with this		
+		};
+		service.radarSearch(request, callback);		
+	}
+	
+	function callback(results, status) {
+		
+		if(status != google.maps.places.PlacesServiceStatus.OK) {
+			alert(status);
+			return;			
+		}
+		for(var i = 0, result; result = results[i]; i++) {
+			createMarker(result);
+		}			
+	}
+	
+	function createMarker(place) {
+		var marker = new google.maps.Marker({
+                map: map,
+                title: place.name,
+                position: place.geometry.location
+            });
+			console.log(place.name);
+			google.maps.event.addListener(marker, 'click', function() {
+				service.getDetails(place, function(result, status) {
+					if(status != google.maps.places.PlacesServiceStatus.OK) {
+						alert(status);
+						return;
+					}
+					infowindow.setContent(result.name);
+					infowindow.open(map, marker);
+					
+				});
+				
+				
+				
+
+			});			
+			
+	}
 	
     // Listen for the event fired when the user selects an item from the
     // pick list. Retrieve the matching places for that item.
