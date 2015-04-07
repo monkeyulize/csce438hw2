@@ -1,17 +1,30 @@
 import tornado.ioloop
 import tornado.web
+import tornado.websocket
 import tornado.httpserver
 
 import os
 
 root = os.path.dirname(__file__)
-
+WEBSOCKS = []
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
 
         self.render("Website/index.html")
         
-
+class YelpHandler(tornado.websocket.WebSocketHandler):
+	
+	def open(self):
+		
+		print("Opened socket")
+		
+		
+	
+	def on_message(self, message):
+		print("Got message")
+		self.write_message(message);
+		
+		
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -20,6 +33,7 @@ class Application(tornado.web.Application):
             (r'/css/(.*)', tornado.web.StaticFileHandler,{"path":'./Website/css'},),
             (r'/js/(.*)', tornado.web.StaticFileHandler,{"path":'./Website/js'},),
             (r'/img/(.*)', tornado.web.StaticFileHandler,{"path":'./Website/img'},),
+			(r'/yelp', YelpHandler),
         ]
         settings = {
             "static_path": os.path.join(root, "Website")
@@ -28,7 +42,7 @@ class Application(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers)
 
 http_server = tornado.httpserver.HTTPServer(Application())
-http_server.listen(8888)
+http_server.listen(12345)
 
 if __name__ == "__main__":
     

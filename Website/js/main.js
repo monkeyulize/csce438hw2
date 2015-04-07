@@ -13,10 +13,23 @@ function initialize() {
     var searchBox = new google.maps.places.SearchBox(input);
 	var infowindow = new google.maps.InfoWindow();
 	var service = new google.maps.places.PlacesService(map);
+	var sock;
+	$(document).ready(function() {
+		
+		sock = new WebSocket("ws://compute.cse.tamu.edu:12345/yelp");
+		sock.onopen = function(){console.log("Connected ws"); };
+		sock.onmessage = function(event) { document.getElementById('line1').innerHTML = event.data;};
 	
-	//google.maps.event.addListener(map, 'click', function(event) {
-	//	alert('Lat: ' + event.latLng.lat() + ' Lng: ' + event.latLng.lng());
-	//});
+	
+	});
+	
+	
+	
+	google.maps.event.addListener(map, 'click', function(event) {
+		//sock.send('Lat: ' + event.latLng.lat() + ' Lng: ' + event.latLng.lng());
+		
+		//alert('Lat: ' + event.latLng.lat() + ' Lng: ' + event.latLng.lng());
+	});
 	
 	function performRadarSearch() {
 		var request = {
@@ -52,6 +65,7 @@ function initialize() {
 					}
 					infowindow.setContent(result.name);
 					infowindow.open(map, marker);
+					sock.send(result.name);
 					
 				});
 				
