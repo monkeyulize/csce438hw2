@@ -27,7 +27,13 @@ h1 {
 h2 {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    margin-top: 0px;
+    margin: 0px;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin: 0px;
 }
 
 input {
@@ -49,9 +55,9 @@ input {
 
 .yelpbar {
     height: 100%;
-    width: 20%;
+    width: 19%;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     display: inline-block;
     overflow: scroll;
 }
@@ -75,13 +81,16 @@ input {
 
 .twitterbar {
     height: 100%;
-    width: 20%;
+    width: 19%;
     margin: 0;
     padding: 0;
     display: inline-block;
     overflow: scroll;
 }
 
+.smallstars {
+    margin: -4px, 6px, -4px, 0px;
+}
 
 
 
