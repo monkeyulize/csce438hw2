@@ -7,13 +7,14 @@ import time
 import sys
 import re
 from random import randint
+from api_key import *
 
 
 class TwitterCrawler():
-    consumer_key = "D9f8mggKhafKRKIwcomScNmQb"
-    consumer_secret = "xhCfW5sWq9jFooVDVttgcweKtVgnjGaZdqr4xDHcSjggQccAuK"
-    access_key = "590600028-i3qRLeifH7fzjxUx7KSKXxxefkKqES31Xp73yEdj"
-    access_secret = "2F4pdg09eooixKAQrO9jKy5Hc279jrEmIoKfI0do973eQ"
+    consumer_key = consumer_key
+    consumer_secret = consumer_secret
+    access_key = access_key
+    access_secret = access_secret
     auth = None
     api = None
 
@@ -86,7 +87,7 @@ class TwitterCrawler():
 def main():
     tc = TwitterCrawler()
     tc.check_api_rate_limit(900)
-    tweet_list = tc.get_query_tweets('Place', 10)
+    tweet_list = tc.get_query_tweets('peace of earth pottery', 10)
 
     #print tweet_list
 
