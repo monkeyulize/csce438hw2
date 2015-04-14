@@ -6,15 +6,16 @@ import tweepy
 import time
 import sys
 import re
+import random
 from random import randint
 from api_key import *
 
 
 class TwitterCrawler():
-    consumer_key = consumer_key
-    consumer_secret = consumer_secret
-    access_key = access_key
-    access_secret = access_secret
+    consumer_key = t_consumer_key
+    consumer_secret = t_consumer_secret
+    access_key = t_access_key
+    access_secret = t_access_secret
     auth = None
     api = None
 
@@ -73,21 +74,22 @@ class TwitterCrawler():
     def get_query_tweets(self, query, num):
         self.check_api_rate_limit(900)
         metadata = self.api.search(q=query,count=num)
-        print metadata
+        #print metadata
         tweets = metadata['statuses']
         tweet_list = []
-        print len(tweets)
+        #print len(tweets)
         for k in range(0, min(len(tweets), num)):
             dummy = tweets[k]['text'].encode('ascii','ignore')
-            print dummy
+            #print dummy
             unicode_word=re.findall(r'\w+',dummy)
-            tweet_list += [str(word) for word in unicode_word ]
+            #tweet_list += [str(word) for word in unicode_word ]
+            tweet_list.append(dummy)
         return tweet_list
 
-def main():
+def get_tweets(query):
     tc = TwitterCrawler()
     tc.check_api_rate_limit(900)
-    tweet_list = tc.get_query_tweets('peace of earth pottery', 10)
+    tweet_list = tc.get_query_tweets(query, 10)
     blue_egg = "http://i.imgur.com/WR9koIb.png"
     green_egg = "http://i.imgur.com/3Raytqi.png"
     orange_egg = "http://i.imgur.com/1oMBqHq.jpg"
@@ -128,9 +130,16 @@ def main():
 	
     #print tweet_list
     message_to_server = ""
-    for tweet in tweet_list:
-        message_to_server = message_to_server + html_a + random.choice(tweet_eggs) + html_b + tweet + html_c
+    if not tweet_list:		
+        return "no tweets"
+    else:
+		#print(tweet_list)
+		for tweet in tweet_list:
+			message_to_server = message_to_server + html_a + random.choice(tweet_eggs) + html_b + tweet + html_c
+		
+		return message_to_server
+	
 	#Send to server
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()

@@ -25,7 +25,22 @@ function initialize() {
 		//	
 		//	
 		//};
-		sock.onmessage = function(event) { document.getElementById('line1').innerHTML = event.data;};
+		sock.onmessage = function(event) { 
+			if(event.data.charAt(0) == 't') {
+				//event.data.replaceAt(0) = '';
+				document.getElementById('twitterFeed').innerHTML = event.data;
+			
+			} else if(event.data.charAt(0) == 'y') {
+                document.getElementById('line1').innerHTML = event.data;
+            
+            }
+		
+		
+		
+		
+		
+		
+		};
 		
 	
 	});
