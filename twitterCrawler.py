@@ -88,8 +88,49 @@ def main():
     tc = TwitterCrawler()
     tc.check_api_rate_limit(900)
     tweet_list = tc.get_query_tweets('peace of earth pottery', 10)
+    blue_egg = "http://i.imgur.com/WR9koIb.png"
+    green_egg = "http://i.imgur.com/3Raytqi.png"
+    orange_egg = "http://i.imgur.com/1oMBqHq.jpg"
+    purple_egg = "http://i.imgur.com/ULG3PXN.png"
+    red_egg = "http://i.imgur.com/BwWYlGm.png"
+    tweet_eggs = [ blue_egg, green_egg, orange_egg, purple_egg, red_egg ]
+	
+    html_a = '''<li class="  h-entry tweet  with-expansion  customisable-border" data-tweet-id="587760189970886656" data-rendered-tweet-id="587760189970886656" data-scribe="component:tweet">"
+					<div class="header">
+					<a class="u-url permalink customisable-highlight" href="" data-datetime="2015-04-13T23:32:04+0000" data-scribe="element:mini_timestamp"><time pubdate="" class="dt-updated" datetime="2015-04-13T23:32:04+0000" title="Time posted: 13 Apr 2015, 23:32:04 (UTC)" aria-label="Posted 2 hours ago">2<abbr title="hours">h</abbr></time></a>
+					<img class="u-photo avatar" alt="" src='''
+					#egg_picture
+    html_b = 	''' data-src-2x="" data-scribe="element:avatar">
+					</div>
+					<div class="e-entry-content">
+					<p class="e-entry-title">'''
+					#tweet
+    html_c = 		'''</p>
+					</div>
 
+					<div class="footer customisable-border" data-scribe="component:footer">
+					<span class="stats-narrow"><span class="stats" data-scribe="component:stats">
+					</span></span>
+					<ul class="tweet-actions" role="menu" aria-label="Tweet actions" data-scribe="component:actions">
+					<li><a href="" class="reply-action web-intent" title="Reply" data-scribe="element:reply"><i class="ic-reply ic-mask"></i><b>Reply</b></a></li>
+					<li><a href="" class="retweet-action web-intent" title="Retweet" data-scribe="element:retweet"><i class="ic-retweet ic-mask"></i><b>Retweet</b></a></li>
+					<li><a href="" class="favorite-action web-intent" title="Favorite" data-scribe="element:favorite"><i class="ic-fav ic-mask"></i><b>Favorite</b></a></li>
+					</ul>
+					<span class="stats-wide"><b>· </b><span class="stats" data-scribe="component:stats">
+					<a href="" title="View Tweet on Twitter" data-scribe="element:favorite_count">
+					<span class="stats-favorites">
+					<strong>1</strong> favorite
+					</span>
+					</a>
+					</span></span>
+					</div>
+					</li>'''
+	
     #print tweet_list
+    message_to_server = ""
+    for tweet in tweet_list:
+        message_to_server = message_to_server + html_a + random.choice(tweet_eggs) + html_b + tweet + html_c
+	#Send to server
 
 if __name__ == "__main__":
     main()
