@@ -16,10 +16,17 @@ function initialize() {
 	var sock;
 	$(document).ready(function() {
 		
-		sock = new WebSocket("ws://compute.cse.tamu.edu:12345/yelp");
+		sock = new WebSocket("ws://" + window.location.hostname + ":12345/yelp");
 		sock.onopen = function(){console.log("Connected ws"); };
+		
+		//sock.onmessage = function(event) {
+		//	
+		//	
+		//	
+		//	
+		//};
 		sock.onmessage = function(event) { document.getElementById('line1').innerHTML = event.data;};
-	
+		
 	
 	});
 	
@@ -56,7 +63,6 @@ function initialize() {
                 title: place.name,
                 position: place.geometry.location
             });
-			console.log(place.name);
 			google.maps.event.addListener(marker, 'click', function() {
 				service.getDetails(place, function(result, status) {
 					if(status != google.maps.places.PlacesServiceStatus.OK) {
@@ -65,7 +71,11 @@ function initialize() {
 					}
 					infowindow.setContent(result.name);
 					infowindow.open(map, marker);
-					sock.send(result.name);
+					sock.send(JSON.stringify({
+						lat: result.geometry.location.lat(),
+						lng: result.geometry.location.lng(),
+						name: result.name
+					}));
 					
 				});
 				

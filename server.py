@@ -2,7 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.websocket
 import tornado.httpserver
-
+from yelpCrawler import *
 import os
 
 root = os.path.dirname(__file__)
@@ -22,7 +22,11 @@ class YelpHandler(tornado.websocket.WebSocketHandler):
 	
 	def on_message(self, message):
 		print("Got message")
-		self.write_message(message);
+		data = json.loads(message);
+		perform_search(data['lat'], data['lng'], data['name']);
+		
+		self.write_message(data);
+		#print(data['name']);
 		
 		
 

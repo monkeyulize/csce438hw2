@@ -4,10 +4,10 @@ import json
 import rauth
 
 
-def get_search_parameters(lat,long):
+def get_search_parameters(lat, long, term):
   #See the Yelp API for more details
   params = {}
-  params["term"] = "restaurant"
+  params["term"] = term
   params["ll"] = "{},{}".format(str(lat),str(long))
   params["radius_filter"] = "2000"
   params["limit"] = "1"
@@ -19,8 +19,8 @@ def get_results(params):
   session = rauth.OAuth1Session(
     consumer_key = consumer_key
     ,consumer_secret = consumer_secret
-    ,access_token = token
-    ,access_token_secret = token_secret)
+    ,access_token = access_key
+    ,access_token_secret = access_secret)
      
   request = session.get("http://api.yelp.com/v2/search",params=params)
    
@@ -30,8 +30,18 @@ def get_results(params):
    
   return data
 
+  
+def perform_search(lat, long, term):
+	params = get_search_parameters(lat, long, term)
+	api_calls = []
+	api_calls.append(get_results(params))
+	time.sleep(1.0)
+	file = open('testfile.txt', 'w+')
+	file.write(str(api_calls))
+	file.close
+
 def main():
-  locations = [(39.98,-82.98)]
+  locations = [(30.63,-96.33)]
   api_calls = []
   for lat,long in locations:
     params = get_search_parameters(lat,long)
