@@ -25,8 +25,20 @@ def get_results(params):
   request = session.get("http://api.yelp.com/v2/search",params=params)
    
   #Transforms the JSON API response into a Python dictionary
-  data = request.json()
+  response = request.json()
   session.close()
+  businesses = response.get('businesses')
+
+  if not businesses:
+    return
+
+  data = dict([('url', businesses[0].url),
+               ('image_url', businesses[0].image_url),
+               ('rating_image_url', businesses[0].rating_image_url),
+               ('snippet_text', businesses[0].snippet_text),
+               ('name', businesses[0].name),
+               ('rating', businesses[0].rating),
+               ('city', businesses[0].location.city)])
    
   return data
 
