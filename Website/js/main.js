@@ -3,8 +3,8 @@ function initialize() {
     var mapCanvas = document.getElementById('map');
 	document.getElementById('doSearch').onclick = performRadarSearch;
     var mapOptions = {
-        center: new google.maps.LatLng(44.5403, -78.5463),
-        zoom: 8,
+        center: new google.maps.LatLng(30.619, -96.326),
+        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(mapCanvas, mapOptions);
@@ -27,11 +27,12 @@ function initialize() {
 		//};
 		sock.onmessage = function(event) { 
 			if(event.data.charAt(0) == 't') {
-				//event.data.replaceAt(0) = '';
-				document.getElementById('twitterFeed').innerHTML = event.data;
+				
+				
+				document.getElementById('twitterFeed').innerHTML = event.data.substring(1);
 			
 			} else if(event.data.charAt(0) == 'y') {
-                document.getElementById('line1').innerHTML = event.data;
+                document.getElementById('line1').innerHTML = event.data.substring(1);
             
             }
 		
@@ -91,6 +92,7 @@ function initialize() {
 						lng: result.geometry.location.lng(),
 						name: result.name
 					}));
+					document.getElementById('twitterFeed').innerHTML = "Searching...";
 					
 				});
 				
@@ -136,6 +138,7 @@ function initialize() {
 			google.maps.event.addListener(marker, 'click', function() {
 				infowindow.setContent(this.title);
 				infowindow.open(map, this);
+				
 
 			});
             markers.push(marker);

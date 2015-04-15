@@ -3,6 +3,7 @@ import tornado.web
 import tornado.websocket
 import tornado.httpserver
 from yelpCrawler import *
+from twitterCrawler import *
 import os
 
 root = os.path.dirname(__file__)
@@ -23,9 +24,11 @@ class YelpHandler(tornado.websocket.WebSocketHandler):
 	def on_message(self, message):
 		print("Got message")
 		data = json.loads(message);
-		perform_search(data['lat'], data['lng'], data['name']);
+		yelp = perform_search(data['lat'], data['lng'], data['name']);
+		tweets = get_tweets(data['name']);
 		
-		self.write_message(data);
+		self.write_message('t' + tweets);
+		self.write_message('y' + yelp);
 		#print(data['name']);
 		
 		
