@@ -4,6 +4,7 @@ import tornado.websocket
 import tornado.httpserver
 from yelpCrawler import *
 from twitterCrawler import *
+from googleReviews import *
 import os
 
 root = os.path.dirname(__file__)
@@ -14,24 +15,29 @@ class MainHandler(tornado.web.RequestHandler):
         self.render("Website/index.html")
         
 class YelpHandler(tornado.websocket.WebSocketHandler):
-	
-	def open(self):
-		
-		print("Opened socket")
-		
-		
-	
-	def on_message(self, message):
-		print("Got message")
-		data = json.loads(message);
-		yelp = perform_search(data['lat'], data['lng'], data['name']);
-		tweets = get_tweets(data['name']);
-		
-		self.write_message('t' + tweets);
-		self.write_message('y' + yelp);
-		#print(data['name']);
-		
-		
+    
+    def open(self):
+        
+        print("Opened socket")
+        
+        
+    
+    def on_message(self, message):
+        print("Got message")
+        data = json.loads(message);
+        yelp = perform_search(data['lat'], data['lng'], data['name']);
+        tweets = get_tweets(data['name']);
+        greviews = getReviews(data['place_id']);
+        if tweets:
+            self.write_message('t' + tweets);
+        
+        if yelp:
+            self.write_message('y' + yelp);
+        if greviews:
+            self.write_message('g' + greviews);
+        #print(data['name']);
+        
+        
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -40,7 +46,7 @@ class Application(tornado.web.Application):
             (r'/css/(.*)', tornado.web.StaticFileHandler,{"path":'./Website/css'},),
             (r'/js/(.*)', tornado.web.StaticFileHandler,{"path":'./Website/js'},),
             (r'/img/(.*)', tornado.web.StaticFileHandler,{"path":'./Website/img'},),
-			(r'/yelp', YelpHandler),
+            (r'/yelp', YelpHandler),
         ]
         settings = {
             "static_path": os.path.join(root, "Website")

@@ -28,7 +28,6 @@ def get_results(params):
   response = request.json()
   session.close()
   businesses = response.get('businesses')
-  print(businesses[0])
   if not businesses:
     return
 

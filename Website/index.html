@@ -19,7 +19,7 @@
 
     <body>
         <center><h1>Map Yelp Twitter Thing</h1></center>
-        <center><input id="doSearch" type="button" value="Search!" /></center>
+        <center><input id="doSearch" type="button" value="Search Restaurants!" /></center>
 		
 		
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -28,61 +28,17 @@
         <script src="js/main.js"></script>
 
         <div class="yelpbar">			
-			<center><h2>Yelp Feed</h2></center>
-			<p id="line1"> line 1 </p>
-			
-			<!-- START DATA HERE -->
-			<!--
-			<center><img src="img/example_5_stars.png" width="132px" height="26px"></center>
-			<center><h3><b><i>80 reviews</i></b></h3></center>
-
-            <p>"For $5, you get 5 chicken fingers, fries, coleslaw, texas toast AND their awesome mustard/bbq dipping sauce."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
+			<center><h2>Yelp Summary</h2></center>
+			<p id="y_summary_content"></p>
+            <br>
             <hr>
-            <p>"It also comes with a slice of Texas Toast (mmmm tasty!), fries and potato salad (really good!!)."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"I was told that this was basically a local Cane's. I don't care for Cane's, but this was excellent."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"For $5, you get 5 chicken fingers, fries, coleslaw, texas toast AND their awesome mustard/bbq dipping sauce."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"It also comes with a slice of Texas Toast (mmmm tasty!), fries and potato salad (really good!!)."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"I was told that this was basically a local Cane's. I don't care for Cane's, but this was excellent."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"For $5, you get 5 chicken fingers, fries, coleslaw, texas toast AND their awesome mustard/bbq dipping sauce."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"It also comes with a slice of Texas Toast (mmmm tasty!), fries and potato salad (really good!!)."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"I was told that this was basically a local Cane's. I don't care for Cane's, but this was excellent."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"For $5, you get 5 chicken fingers, fries, coleslaw, texas toast AND their awesome mustard/bbq dipping sauce."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"It also comes with a slice of Texas Toast (mmmm tasty!), fries and potato salad (really good!!)."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"I was told that this was basically a local Cane's. I don't care for Cane's, but this was excellent."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"For $5, you get 5 chicken fingers, fries, coleslaw, texas toast AND their awesome mustard/bbq dipping sauce."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"It also comes with a slice of Texas Toast (mmmm tasty!), fries and potato salad (really good!!)."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-            <hr>
-            <p>"I was told that this was basically a local Cane's. I don't care for Cane's, but this was excellent."</p>
-            <img class="smallstars" src="img/example_5_stars.png" width="100px" height="20px" align="right"><br>
-			-->
-			<!-- END DATA HERE -->
-
+            <div class="g_reviews" id="google_reviews">
+            <center><h2>Google Reviews</h2></center>
+            <p id="g_reviews_content"></p>
+            </div>
+            
+            
+            
         </div>
         <div class="mapcontainer">
 		
@@ -105,34 +61,7 @@
 	    </div>
             <div style="height: 513px;" class="stream" data-scribe="section:stream">
 		<ol class="h-feed" id="twitterFeed">
-		<!--HERE-->
-			<li class="  h-entry tweet  with-expansion  customisable-border" data-tweet-id="587760189970886656" data-rendered-tweet-id="587760189970886656" data-scribe="component:tweet">
-				<div class="header">
-				<a class="u-url permalink customisable-highlight" href="" data-datetime="2015-04-13T23:32:04+0000" data-scribe="element:mini_timestamp"><time pubdate="" class="dt-updated" datetime="2015-04-13T23:32:04+0000" title="Time posted: 13 Apr 2015, 23:32:04 (UTC)" aria-label="Posted 2 hours ago">2<abbr title="hours">h</abbr></time></a>
-				<img class="u-photo avatar" alt="" src="http://i.imgur.com/WR9koIb.png" data-src-2x="http://i.imgur.com/WR9koIb.png" data-scribe="element:avatar">
-				</div>
-				<div class="e-entry-content">
-				<p class="e-entry-title">Tweet</p>
-				</div>
-	
-				<div class="footer customisable-border" data-scribe="component:footer">
-				<span class="stats-narrow"><span class="stats" data-scribe="component:stats">
-				</span></span>
-				<ul class="tweet-actions" role="menu" aria-label="Tweet actions" data-scribe="component:actions">
-				<li><a href="" class="reply-action web-intent" title="Reply" data-scribe="element:reply"><i class="ic-reply ic-mask"></i><b>Reply</b></a></li>
-				<li><a href="" class="retweet-action web-intent" title="Retweet" data-scribe="element:retweet"><i class="ic-retweet ic-mask"></i><b>Retweet</b></a></li>
-				<li><a href="" class="favorite-action web-intent" title="Favorite" data-scribe="element:favorite"><i class="ic-fav ic-mask"></i><b>Favorite</b></a></li>
-				</ul>
-				<span class="stats-wide"><b>· </b><span class="stats" data-scribe="component:stats">
-				<a href="" title="View Tweet on Twitter" data-scribe="element:favorite_count">
-				<span class="stats-favorites">
-				<strong>1</strong> favorite
-				</span>
-				</a>
-				</span></span>
-				</div>
-			</li>  
-		<!--TO HERE-->
+
 		</ol>
 		<p class="no-more-pane" role="alert">
 			There are no more Tweets in this stream.

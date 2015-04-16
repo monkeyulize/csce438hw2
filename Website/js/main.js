@@ -32,8 +32,10 @@ function initialize() {
 				document.getElementById('twitterFeed').innerHTML = event.data.substring(1);
 			
 			} else if(event.data.charAt(0) == 'y') {
-                document.getElementById('line1').innerHTML = event.data.substring(1);
+                document.getElementById('y_summary_content').innerHTML = event.data.substring(1);
             
+            } else if(event.data.charAt(0) == 'g') {
+                document.getElementById('g_reviews_content').innerHTML = event.data.substring(1);
             }
 		
 		
@@ -57,7 +59,7 @@ function initialize() {
 	function performRadarSearch() {
 		var request = {
 			bounds: map.getBounds(),
-			keyword: 'interesting' //work with this		
+			keyword: 'restaurant' //work with this		
 		};
 		service.radarSearch(request, callback);		
 	}
@@ -85,12 +87,14 @@ function initialize() {
 						alert(status);
 						return;
 					}
+                    //console.log(result.place_id);
 					infowindow.setContent(result.name);
 					infowindow.open(map, marker);
 					sock.send(JSON.stringify({
 						lat: result.geometry.location.lat(),
 						lng: result.geometry.location.lng(),
-						name: result.name
+						name: result.name,
+                        place_id: result.place_id
 					}));
 					document.getElementById('twitterFeed').innerHTML = "Searching...";
 					

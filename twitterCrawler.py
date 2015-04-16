@@ -98,9 +98,8 @@ def get_tweets(query):
     red_egg = "http://i.imgur.com/BwWYlGm.png"
     tweet_eggs = [ blue_egg, green_egg, orange_egg, purple_egg, red_egg ]
     
-    html_a = '''<li class="  h-entry tweet  with-expansion  customisable-border" data-tweet-id="587760189970886656" data-rendered-tweet-id="587760189970886656" data-scribe="component:tweet">"
+    html_a = '''<li class="  h-entry tweet  with-expansion  customisable-border" data-tweet-id="587760189970886656" data-rendered-tweet-id="587760189970886656" data-scribe="component:tweet">
                     <div class="header">
-                    <a class="u-url permalink customisable-highlight" href="" data-datetime="2015-04-13T23:32:04+0000" data-scribe="element:mini_timestamp"><time pubdate="" class="dt-updated" datetime="2015-04-13T23:32:04+0000" title="Time posted: 13 Apr 2015, 23:32:04 (UTC)" aria-label="Posted 2 hours ago">2<abbr title="hours">h</abbr></time></a>
                     <img class="u-photo avatar" alt="" src='''
                     #egg_picture
     html_b =    ''' data-src-2x="" data-scribe="element:avatar">
